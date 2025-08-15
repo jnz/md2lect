@@ -1,0 +1,14 @@
+figureTitle: "Abbildung"
+figPrefix: ["Abbildung", "Abb."]
+
+tableTitle: "Tabelle"
+tblPrefix: ["Tabelle", "Tab."]
+
+eqnPrefix: ["Gleichung", "Gl."]
+
+secPrefix: ["Abschnitt", "Abs."]
+
+listingTitle: "Listing"
+lstPrefix: ["Listing", "Lst."]
+
+htmlEqn: true

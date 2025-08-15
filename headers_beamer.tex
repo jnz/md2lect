@@ -1,0 +1,29 @@
+% ==== Sprache & Mikrotypografie ====
+\usepackage{polyglossia} % für mehrsprachige Dokumente
+\setmainlanguage{german}
+\usepackage{microtype} % für hübschere Typografie (z.B. Ligaturen)
+\usepackage{amsmath} % für erweiterte Mathematik-Umgebungen wie z.B. align
+
+% ==== Fonts & Emoji-Fallback (LuaLaTeX) ====
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{luacode}
+
+% Emoji-Fallback (Noto Color Emoji muss installiert sein)
+\directlua{
+  luaotfload.add_fallback("emojifallback", {
+    "Noto Color Emoji:mode=harf;script=DFLT;"
+  })
+}
+
+% Hauptschrift (Serif) + Sans + Mono
+\setmainfont{Libertinus Serif}[RawFeature={fallback=emojifallback}]
+\setsansfont{Libertinus Sans}[RawFeature={fallback=emojifallback}]
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase,RawFeature={fallback=emojifallback}]
+
+% Mathematik
+\setmathfont{Libertinus Math}
+
+% Links u. rechts mehr Platz nutzen
+\setbeamersize{text margin left=2em, text margin right=2em}
+
