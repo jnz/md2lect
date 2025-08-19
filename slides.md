@@ -81,7 +81,6 @@ int main() {
 }
 ```
 
-
 Bild
 ==========
 
@@ -106,14 +105,14 @@ Inline: $E = mc^2$ und $\alpha, \beta, \gamma, \pi, \infty$
 Block:
 $$
 \frac{d}{dx} \left( \sin x \right) = \cos x
-$$
+$$ {#eq:basic1}
 
 Brüche, Wurzeln, Matrizen
 -------------------------
 
 $$
 \sqrt[n]{1+x+x^2+x^3+\dots} = \frac{\pi}{2}
-$$
+$$ {#eq:basic2}
 
 $$
 A = \begin{bmatrix}
@@ -121,7 +120,7 @@ a_{11} & a_{12} & a_{13} \\
 a_{21} & a_{22} & a_{23} \\
 a_{31} & a_{32} & a_{33}
 \end{bmatrix}
-$$
+$$ {#eq:matrix1}
 
 Ausgerichtete Gleichungen (amsmath)
 -----------------------------------

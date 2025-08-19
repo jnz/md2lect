@@ -1,6 +1,4 @@
 % ==== Sprache & Mikrotypografie ====
-\usepackage{polyglossia} % für mehrsprachige Dokumente
-\setmainlanguage{german}
 \usepackage{microtype} % für hübschere Typografie (z.B. Ligaturen)
 \usepackage{amsmath} % für erweiterte Mathematik-Umgebungen wie z.B. align
 
@@ -8,6 +6,10 @@
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \usepackage{luacode}
+
+% TikZ für Diagramme und Grafiken
+%\usepackage{tikz}
+%\usetikzlibrary{arrows.meta,arrows,3d,bending,positioning}
 
 % Emoji-Fallback (Noto Color Emoji muss installiert sein)
 \directlua{
@@ -27,3 +29,19 @@
 % Links u. rechts mehr Platz nutzen
 \setbeamersize{text margin left=2em, text margin right=2em}
 
+% Footer mit Name, Vorlesungstitel, Logo
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.5ex,dp=1.5ex,left]{author in head/foot}
+      \usebeamerfont{author in head/foot}\hspace{1em}Prof. Dr.-Ing. Jan Zwiener
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.5ex,dp=1.5ex,center]{title in head/foot}
+      \usebeamerfont{title in head/foot}Slide Deck Title
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.5ex,dp=1.5ex,right]{date in head/foot}
+      \includegraphics[height=7.5ex]{img/hdalogo.png}\hspace{1em}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt
+}
