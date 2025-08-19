@@ -29,6 +29,7 @@ all: $(OUT_SCRIPT_HTML_PREVIEW)
 everything: pdf slides beamer powerpoint
 
 script: $(OUT_SCRIPT)
+pdf: $(OUT_SCRIPT)
 preview: $(OUT_SCRIPT_HTML_PREVIEW)
 slides: $(OUT_SLIDES)
 beamer: $(OUT_SLIDES_BEAMER)
