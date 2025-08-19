@@ -2,3 +2,25 @@
   text-align: left;
 }
 
+.reveal .slide-footer {
+  position: fixed;
+  bottom: 0.5em;
+  left: 1em;
+  right: 1em;
+  font-size: 0.8em;
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+}
+
+.reveal .slide-footer.hidden {
+  display: none;
+}
+
+#footer-logo {
+  height: 60px;
+}
+
+

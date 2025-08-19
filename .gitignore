@@ -1,4 +1,6 @@
 release/*.pdf
 release/*.html
 media/img/*
+release/slides.pre.md
+release/script.pre.md
 

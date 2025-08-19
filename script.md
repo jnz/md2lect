@@ -1,8 +1,8 @@
 ---
-title: "Script"
-author: "Prof. Dr.-Ing. Jan Zwiener"
-date: August 2025
-institute: "Hochschule Darmstadt, Fachbereich Elektro- und Informationstechnik"
+title: "${title}"
+author: "${author}"
+date: ${builddate}
+institute: "${institute}"
 bibliography: "bibliography.bib"
 csl: apa.csl
 lang: de-DE

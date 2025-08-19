@@ -1,14 +1,30 @@
 ---
-title: "Slides"
-author: "Prof. Dr.-Ing. Jan Zwiener"
-date: August 2025
-institute: "Hochschule Darmstadt, Fachbereich Elektro- und Informationstechnik"
+title: "${title}"
+author: "${author}"
+date: ${builddate}
+institute: "${institute}"
 theme: "white"
 bibliography: "bibliography.bib"
 csl: apa.csl
 lang: de-DE
 ---
 
+
+Version
+======
+
+${title}
+
+<small>
+${author}
+
+| Version | Build       |
+|---------|-------------|
+| #${githash} | ${builddate} |
+
+${buildtime}
+
+</small>
 
 Übersicht
 ======
@@ -23,6 +39,7 @@ Referenzen
 ----------
 
 Siehe @sec:latex für eine Latex-Formel. UTF-8 wird unterstützt, z.B. "äöüßÄÖÜ".
+
 
 Viel Text
 ---------
