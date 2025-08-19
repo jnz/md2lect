@@ -18,7 +18,7 @@ ${title}
 <small>
 ${author}
 
-| Version | Build       |
+| Git | Build       |
 |---------|-------------|
 | #${githash} | ${builddate} |
 
