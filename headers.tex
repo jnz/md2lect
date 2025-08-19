@@ -9,6 +9,16 @@
 \usepackage{unicode-math}
 \usepackage{luacode}
 
+% TikZ für Diagramme und Grafiken
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{arrows.meta,calc,arrows,3d,bending,positioning}
+
+% --- Schöner, kompakter Pfeilkopf ---
+\tikzset{
+  arrowstyle/.style = {-{Stealth[length=4pt, width=4pt]}},
+}
+
 % Emoji-Fallback (Noto Color Emoji muss installiert sein)
 \directlua{
   luaotfload.add_fallback("emojifallback", {
