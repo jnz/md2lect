@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Purpose: Installiere pandoc, pandoc-crossref und Abhängigkeiten für das Projekt.
+# Usage: ./setup.sh
+
 # ---------------- config/paths ----------------
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BIN_SRC="$REPO_ROOT/bin_source"
