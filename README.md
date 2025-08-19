@@ -17,7 +17,7 @@ Bereits im Repository enthalten sind:
  * katex 0.16.22 (im Verzeichnis ./katex)
 
 Damit das System auch in Zukunft funktioniert, habe ich die
-Abhängigkeiten für Debian/Ubuntu im Ordner `bin_source/` abgelegt.
+pandoc Abhängigkeiten für Debian/Ubuntu im Ordner `bin_source/` abgelegt.
 Wenn gewünscht, versucht folgendes Skript die pandoc
 Abhängigkeiten zu installieren:
 
