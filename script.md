@@ -42,9 +42,9 @@ Tabelle
 -------------
 
 | Bereich           | Inhalt                                    | Git-Befehl                         |
-|-------------------|-------------------------------------------|-------------------------------------|
-| Working Directory | Aktuelle Dateien im Verzeichnis           | —                                   |
-| Staging Area      | Änderungen, die für den nächsten Commit bereit sind | `git add <datei>`         |
+|-------------------|-------------------------------------------|------------------------------------|
+| Working Directory | Aktuelle Dateien im Verzeichnis           | —                                  |
+| Staging Area      | Änderungen, die für den nächsten Commit bereit sind | `git add <datei>`        |
 | Repository        | Dauerhaft gespeicherte Versionen          | `git commit -m "Nachricht"`        |
 : Git Bereiche {#tbl:git}
 
