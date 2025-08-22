@@ -108,5 +108,5 @@ have pandoc-crossref || { err "pandoc-crossref nicht im PATH."; exit 1; }
 have latexmk || warn "latexmk nicht gefunden (PDF-Builds betroffen)."
 have lualatex || warn "lualatex nicht gefunden (PDF-Builds betroffen)."
 
-ok "Setup fertig. Jetzt: make
+ok "Setup fertig. Jetzt: make"
 
