@@ -25,6 +25,31 @@ Abhängigkeiten zu installieren:
 source setup.sh    # Installation aus bin_source/ Files
 ```
 
+Für Windows:
+
+Pandoc kann mit winget installiert werden:
+
+    winget install --source winget --exact --id JohnMacFarlane.Pandoc
+
+`pandoc-crossref.exe` direkt von GitHub herunterladen und in ein Verzeichnis im Pfad
+extrahieren (z.B. %HOME\AppData\Local\Pandoc\):
+
+    https://github.com/lierdakil/pandoc-crossref/releases/
+
+Fonts:
+
+Libertinus Fonts
+
+    https://github.com/alerque/libertinus/releases
+
+Dejavu Fonts
+
+    https://dejavu-fonts.github.io/
+
+Noto Color Emoji
+
+    https://fonts.google.com/noto/specimen/Noto+Color+Emoji
+
 ## Kompilieren:
 
 Die Input Datei `script.md` wird mit pandoc und Latex zu einer
