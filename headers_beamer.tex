@@ -18,9 +18,14 @@
   })
 }
 
-% Hauptschrift (Serif) + Sans + Mono
-\setmainfont{Libertinus Serif}[RawFeature={fallback=emojifallback}]
-\setsansfont{Libertinus Sans}[RawFeature={fallback=emojifallback}]
+% Hauptschrift
+\setmainfont{HDA DIN Office Medium}[
+  BoldFont    = HDA DIN Office Bold,
+  % ItalicFont  = * Italic , % echte Italic, falls vorhanden
+  RawFeature  = {fallback=emojifallback}
+]
+% \setmainfont{Libertinus Serif}[RawFeature={fallback=emojifallback}]
+% \setsansfont{Libertinus Sans}[RawFeature={fallback=emojifallback}]
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase,RawFeature={fallback=emojifallback}]
 
 % Mathematik

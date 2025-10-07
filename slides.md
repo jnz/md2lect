@@ -1,7 +1,7 @@
 ---
 title: "${title}"
 author: "${author}"
-date: ${builddate}
+date: "${builddate}"
 institute: "${institute}"
 theme: "white"
 bibliography: "bibliography.bib"
@@ -10,19 +10,17 @@ lang: de-DE
 ---
 
 
-Version
-======
+## <!-- No title -->
 
-${title}
+**${title}**
 
 <small>
 ${author}
 
-| Git | Build       |
-|---------|-------------|
-| #${githash} | ${builddate} |
+| Git | Build | Date |
+|---------|-------|-----------|
+| #${githash} | ${builddate} | ${buildtime} |
 
-${buildtime}
 
 </small>
 

@@ -100,7 +100,7 @@ else
 fi
 
 # ---------------- 6) sanity checks ----------------
-log "Prüfe Tools im PATH…"
+log "Prüfe Tools im PATH..."
 have pandoc || { err "pandoc nicht im PATH."; exit 1; }
 have pandoc-crossref || { err "pandoc-crossref nicht im PATH."; exit 1; }
 
