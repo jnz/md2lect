@@ -17,6 +17,7 @@ OUT_SCRIPT_HTML_PREVIEW=release/script.html
 OUT_SLIDES=release/slides.html
 OUT_SLIDES_BEAMER=release/slides.pdf
 OUT_SLIDES_PPTX=release/slides.pptx
+OUT_SLIDES_HTML_PREVIEW=release/slides_preview.html
 
 # Preprocessed Markdown
 SRC_SCRIPT_PRE=release/script.pre.md
@@ -46,6 +47,7 @@ preview: $(OUT_SCRIPT_HTML_PREVIEW)
 slides: $(OUT_SLIDES)
 beamer: $(OUT_SLIDES_BEAMER)
 powerpoint: $(OUT_SLIDES_PPTX)
+preview-slides: $(OUT_SLIDES_HTML_PREVIEW)
 
 # ---------- Preprocessing: ersetzt ${githash}, ${buildtime}, ${builddate} ----------
 $(SRC_SCRIPT_PRE): $(SRC_SCRIPT) Makefile
@@ -124,6 +126,15 @@ $(OUT_SLIDES_PPTX): $(SRC_SLIDES_PRE) $(SRC_POWERPOINT_TEMPLATE) Makefile
 		--filter pandoc-crossref \
 		--citeproc \
 		--reference-doc=$(SRC_POWERPOINT_TEMPLATE)
+
+$(OUT_SLIDES_HTML_PREVIEW): $(SRC_SLIDES_PRE) $(SRC_CROSSREF) $(SRC_BIB) Makefile
+	pandoc $(SRC_SLIDES_PRE) \
+		-t html5 -s -o $(OUT_SLIDES_HTML_PREVIEW) \
+		$(MATHJS) \
+		--embed-resources \
+		--filter pandoc-crossref \
+		--citeproc \
+		--toc
 
 clean:
 	rm -f $(OUT_SCRIPT) $(OUT_SCRIPT_HTML_PREVIEW) $(OUT_SLIDES) $(OUT_SLIDES_BEAMER) $(OUT_SLIDES_PPTX) $(SRC_SCRIPT_PRE) $(SRC_SLIDES_PRE)
