@@ -30,7 +30,8 @@ REVEALJS=-V revealjs-url=./reveal.js
 MATHJS=--katex=./katex/
 
 # Versioning
-GIT_HASH := $(shell git rev-parse --short HEAD)$(shell test -n "`git status --porcelain`" && echo -d)
+GIT_HASH := $(shell git rev-parse --short HEAD 2>/dev/null || echo "nogit")\
+            $(shell test -n "`git status --porcelain 2>/dev/null`" && echo -d)
 BUILD_DATE := $(shell date +'%Y.%m')
 BUILD_TIME := $(shell date +'%Y-%m-%d %H:%M:%S')
 TITLE ?= Slides
