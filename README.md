@@ -36,6 +36,14 @@ extrahieren (z.B. %HOME\AppData\Local\Pandoc\):
 
     https://github.com/lierdakil/pandoc-crossref/releases/
 
+Git Bash für Windows benötigt evtl. noch in der `~/.bashrc`:
+
+    export PATH="$PATH:/c/Users/$USERNAME/AppData/Local/Pandoc"
+
+Oder über das Hilfsskript (mit `cmd.exe`):
+
+    setup.bat
+
 Fonts:
 
 Libertinus Fonts
