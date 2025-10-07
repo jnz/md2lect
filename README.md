@@ -88,3 +88,15 @@ Die Folien können auch als PowerPoint `release/slides.pptx` exportiert werden
 make powerpoint   # Build release/slides.pptx
 ```
 
+## Live Preview
+
+Für ein Live Preview kann `live-server` genutzt werden:
+
+    npm install -g live-server
+
+Starten mit:
+
+    live-server --no-browser release/script.html
+
+Unter `http://127.0.0.1:8080` kann dann im Browser die aktuellste Version angezeigt werden.
+
