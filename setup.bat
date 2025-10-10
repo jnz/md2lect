@@ -80,10 +80,6 @@ if /I "%UPDATE_BASHRC%"=="y" (
     echo Überspringe .bashrc-Anpassung.
 )
 
-echo.
-echo === Setup fertig ===
-echo.
-
 :: ---------------------------------------------------------
 :: d) Versionen ausgeben
 :: ---------------------------------------------------------
@@ -97,4 +93,57 @@ if exist "%TARGET%\pandoc-crossref.exe" (
     echo pandoc-crossref nicht gefunden.
 )
 
+:: ---------------------------------------------------------
+:: e) Live-Server installieren
+:: ---------------------------------------------------------
+
+echo.
+echo === Live-Server Setup ===
+echo.
+
+where node >nul 2>&1
+if %errorlevel%==0 (
+    for /f "delims=" %%n in ('where node') do set NODE_PATH=%%n
+    echo Node.js gefunden unter: %NODE_PATH%
+) else (
+    set /p INSTALL_NODE="Node.js nicht gefunden. Installieren? (y/n): "
+    if /I "%INSTALL_NODE%"=="y" (
+        echo Installiere Node.js ...
+        winget install --source winget --exact --id OpenJS.NodeJS
+    ) else (
+        echo Überspringe Node.js.
+    )
+)
+
+echo.
+where npm >nul 2>&1
+if %errorlevel%==0 (
+    echo npm vorhanden.
+    echo Prüfe, ob live-server installiert ist...
+    npm list -g live-server >nul 2>&1
+    if %errorlevel%==0 (
+        echo live-server bereits global installiert.
+        set /p REINSTALL_LIVE="Trotzdem neu installieren? (y/n): "
+        if /I "%REINSTALL_LIVE%"=="y" (
+            npm install -g live-server
+        ) else (
+            echo Überspringe live-server-Installation.
+        )
+    ) else (
+        set /p INSTALL_LIVE="live-server ist nicht installiert. Jetzt installieren? (y/n): "
+        if /I "%INSTALL_LIVE%"=="y" (
+            npm install -g live-server
+        ) else (
+            echo Überspringe live-server.
+        )
+    )
+) else (
+    echo npm nicht gefunden — vermutlich ist Node.js nicht installiert.
+)
+
+echo.
+echo === Live-Server Setup fertig ===
+echo.
+
 pause
+
