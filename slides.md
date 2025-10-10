@@ -38,6 +38,16 @@ Referenzen
 
 Siehe @sec:latex für eine Latex-Formel. UTF-8 wird unterstützt, z.B. "äöüßÄÖÜ".
 
+::: {.box}
+Lorem final ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+:::
+
+::: {.fragment}
+ 1. Erster Eintrag
+ 2. Zweiter Eintrag
+ 3. Dritter Eintrag
+:::
+
 
 Viel Text
 ---------
