@@ -43,11 +43,16 @@ Lorem final ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy e
 :::
 
 ::: {.fragment}
+ * Eine
+ * einfache
+ * Liste
+:::
+
+::: incremental
  1. Erster Eintrag
  2. Zweiter Eintrag
  3. Dritter Eintrag
 :::
-
 
 Viel Text
 ---------
