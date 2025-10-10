@@ -99,6 +99,7 @@ $(OUT_SLIDES): $(SRC_SLIDES_PRE) revealstyle.css $(SRC_CROSSREF) $(SRC_BIB) Make
 		--filter pandoc-crossref \
 		--embed-resources \
 		--standalone \
+		--wrap=none \
 		--citeproc \
 		-c revealstyle.css \
 		--toc --toc-depth=1 \
