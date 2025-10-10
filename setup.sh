@@ -99,6 +99,42 @@ else
   ok "pandoc-crossref installiert."
 fi
 
+# ---------------- live-server installieren (optional) ----------------
+read -rp "live-server installieren oder prüfen? (y/n): " DO_LIVE
+if [[ "$DO_LIVE" =~ ^[Yy]$ ]]; then
+  if have npm; then
+    log "npm gefunden."
+    if npm list -g --depth=0 live-server >/dev/null 2>&1; then
+      ok "live-server bereits global installiert."
+      read -rp "Trotzdem neu installieren? (y/n): " REINSTALL_LIVE
+      if [[ "$REINSTALL_LIVE" =~ ^[Yy]$ ]]; then
+        log "Installiere live-server neu..."
+        npm install -g live-server
+        ok "live-server installiert."
+      else
+        log "Überspringe Neuinstallation von live-server."
+      fi
+    else
+      read -rp "live-server ist nicht installiert. Jetzt installieren? (y/n): " INSTALL_LIVE
+      if [[ "$INSTALL_LIVE" =~ ^[Yy]$ ]]; then
+        log "Installiere live-server..."
+        if can_sudo; then
+            sudo npm install -g live-server
+            ok "live-server installiert."
+        else
+            log "Überspringe live-server (kein sudo)."
+        fi
+      else
+        log "Überspringe live-server."
+      fi
+    fi
+  else
+    warn "npm nicht gefunden – vermutlich ist Node.js nicht installiert."
+  fi
+else
+  log "Überspringe live-server komplett."
+fi
+
 # ---------------- 6) sanity checks ----------------
 log "Prüfe Tools im PATH..."
 have pandoc || { err "pandoc nicht im PATH."; exit 1; }
