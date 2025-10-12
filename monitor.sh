@@ -19,14 +19,11 @@ ok()   { printf "\033[1;32m[DONE]\033[0m  %s\n" "$*"; }   # grün
 err()  { printf "\033[1;31m[FAIL]\033[0m  %s\n" "$*" >&2; } # rot
 
 # --- initial build if file missing ---
-if [[ ! -f "$FILE" ]]; then
-  log "Datei '$FILE' existiert noch nicht – baue mit 'make $TARGET'..."
-  if make "$TARGET"; then
-    ok "$TARGET fertig."
-  else
-    err "Fehler beim initialen Build ($TARGET)."
-    exit 1
-  fi
+if make "$TARGET"; then
+  ok "$TARGET bereit."
+else
+  err "Fehler beim initialen Build ($TARGET)."
+  exit 1
 fi
 
 # --- use entr if available ---

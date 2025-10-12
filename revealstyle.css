@@ -32,3 +32,19 @@
 .reveal h6 {
   font-family: "HDA DIN Office";
 }
+
+.box {
+  background-color: #eef6ff;
+  border-left: 4px solid #3b82f6;
+  margin: 2.0em;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+
+.reveal section {
+  font-size: 28px; /* Standard runtersetzen */
+}
+.reveal h1 { font-size: 1.6em; }
+.reveal h2 { font-size: 1.3em; }
+.reveal h3 { font-size: 1.1em; }
+
