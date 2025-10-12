@@ -86,8 +86,6 @@ Wie in @knuth1984 beschreiben, ist es wichtig, Referenzen korrekt zu setzen.
 Tabelle
 -------------
 
-<small>
-
 | Bereich           | Inhalt                                    | Git-Befehl                         |
 |-------------------|-------------------------------------------|-------------------------------------|
 | Working Directory | Aktuelle Dateien im Verzeichnis           | —                                   |
@@ -96,8 +94,6 @@ Tabelle
 : Git Bereiche {#tbl:git}
 
 Siehe @tbl:git.
-
-</small>
 
 Code
 -------------
