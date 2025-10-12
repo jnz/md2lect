@@ -118,7 +118,8 @@ $(OUT_SLIDES_BEAMER): $(SRC_SLIDES_PRE) $(SRC_LATEX_BEAMER_HEADER) Makefile
 		--citeproc \
 		--toc --toc-depth=1 \
 		-H $(SRC_LATEX_BEAMER_HEADER) \
-		-V theme:default
+		-V theme:default \
+		-V aspectratio=169
 
 $(OUT_SLIDES_PPTX): $(SRC_SLIDES_PRE) $(SRC_POWERPOINT_TEMPLATE) Makefile
 	pandoc $(SRC_SLIDES_PRE) \
