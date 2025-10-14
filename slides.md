@@ -37,7 +37,7 @@ ${author} (<${authormail}>)
 Referenzen
 ----------
 
-Siehe @sec:latex für eine Latex-Formel. UTF-8 wird unterstützt, z.B. "äöüßÄÖÜ".
+Siehe @sec:latex für *eine* **Latex**-Formel. UTF-8 wird unterstützt, z.B. "äöüßÄÖÜ".
 
 ::: {.box}
 Lorem final ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
