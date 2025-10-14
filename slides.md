@@ -7,6 +7,7 @@ theme: "white"
 bibliography: "bibliography.bib"
 csl: apa.csl
 lang: de-DE
+slideNumber: true
 ---
 
 
@@ -15,7 +16,7 @@ lang: de-DE
 **${title}**
 
 <small>
-${author}
+${author} (<${authormail}>)
 
 | Git | Build | Date |
 |---------|-------|-----------|

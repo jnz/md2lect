@@ -37,6 +37,7 @@ BUILD_TIME := $(shell date +'%Y-%m-%d %H:%M:%S')
 TITLE ?= Slides
 AUTHOR ?= Prof. Dr.-Ing. Jan Zwiener
 INSTITUTE ?= Hochschule Darmstadt, Fachbereich Elektro- und Informationstechnik
+AUTHORMAIL ?= jan.zwiener@h-de.de
 
 # Standard-Ziel
 all: $(OUT_SCRIPT_HTML_PREVIEW)
@@ -58,6 +59,7 @@ $(SRC_SCRIPT_PRE): $(SRC_SCRIPT) Makefile
 	    -e 's/$${title}/$(TITLE)/g' \
 	    -e 's/$${author}/$(AUTHOR)/g' \
 	    -e 's/$${institute}/$(INSTITUTE)/g' \
+	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
 $(SRC_SLIDES_PRE): $(SRC_SLIDES) Makefile
@@ -67,6 +69,7 @@ $(SRC_SLIDES_PRE): $(SRC_SLIDES) Makefile
 	    -e 's/$${title}/$(TITLE)/g' \
 	    -e 's/$${author}/$(AUTHOR)/g' \
 	    -e 's/$${institute}/$(INSTITUTE)/g' \
+	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
 # ---------- PDF mit LaTeX ----------
@@ -108,6 +111,7 @@ $(OUT_SLIDES): $(SRC_SLIDES_PRE) revealstyle.css $(SRC_CROSSREF) $(SRC_BIB) Make
 		-V transition=slide \
 		-V history=false
 
+# -V handout mode aktiv, also keine extra Folien für ::: {.fragment}
 $(OUT_SLIDES_BEAMER): $(SRC_SLIDES_PRE) $(SRC_LATEX_BEAMER_HEADER) Makefile
 	pandoc $(SRC_SLIDES_PRE) -t beamer -o $(OUT_SLIDES_BEAMER) \
 		--slide-level=2 \
@@ -119,6 +123,7 @@ $(OUT_SLIDES_BEAMER): $(SRC_SLIDES_PRE) $(SRC_LATEX_BEAMER_HEADER) Makefile
 		--toc --toc-depth=1 \
 		-H $(SRC_LATEX_BEAMER_HEADER) \
 		-V theme:default \
+		-V handout \
 		-V aspectratio=169
 
 $(OUT_SLIDES_PPTX): $(SRC_SLIDES_PRE) $(SRC_POWERPOINT_TEMPLATE) Makefile
