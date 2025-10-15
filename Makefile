@@ -1,3 +1,5 @@
+-include config.mk
+
 LOCAL_BIN := $(CURDIR)/bin
 export PATH := $(LOCAL_BIN):$(PATH)
 
@@ -38,10 +40,11 @@ MATHJS=--katex=./katex/
 GIT_HASH := $(shell h=$$(git rev-parse --short HEAD 2>/dev/null || echo nogit); git diff --quiet 2>/dev/null || h=$${h}-d; echo $$h)
 BUILD_DATE := $(shell date +'%Y.%m')
 BUILD_TIME := $(shell date +'%Y-%m-%d %H:%M:%S')
-TITLE ?= Title
-AUTHOR ?= Author
+# In config.mk definiert werden:
+TITLE ?= Untitled
+AUTHOR ?= Unknown
 INSTITUTE ?= Institute
-AUTHORMAIL ?= author@domain
+AUTHORMAIL ?= unknown@email
 
 # Standard-Ziel
 all: $(OUT_SCRIPT_HTML_PREVIEW)
