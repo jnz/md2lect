@@ -35,8 +35,7 @@ REVEALJS=-V revealjs-url=./reveal.js
 MATHJS=--katex=./katex/
 
 # "Preprocessor Variablen", die im Quellcode ersetzt werden
-GIT_HASH := $(shell git rev-parse --short HEAD 2>/dev/null || echo "nogit")\
-            $(shell test -n "`git status --porcelain 2>/dev/null`" && echo -d)
+GIT_HASH := $(shell h=$$(git rev-parse --short HEAD 2>/dev/null || echo nogit); git diff --quiet 2>/dev/null || h=$${h}-d; echo $$h)
 BUILD_DATE := $(shell date +'%Y.%m')
 BUILD_TIME := $(shell date +'%Y-%m-%d %H:%M:%S')
 TITLE ?= Title
