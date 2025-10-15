@@ -210,7 +210,7 @@ x^2 & \text{if } x \ge 0, \\
 \end{cases}
 $$
 
-Quellen
+Quellen {.allowframebreaks}
 =======
 <!-- Literaturverzeichnis wird automatisch eingefügt -->
 
