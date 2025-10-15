@@ -23,8 +23,10 @@ OUT_SLIDES_PDF  := $(patsubst %.md,release/%.pdf,$(notdir $(SRC_SLIDES_MD)))
 # slides01.md ──▶ release/slides01.pre.md ──▶  release/slides01.html
 #                                          └─▶ release/slides01.pdf
 
-# Preprocessed Markdown
+# Preprocessed Inputs
 SRC_SCRIPT_PRE_MD=release/script.pre.md
+PRE_LATEX_HEADER := release/headers.pre.tex
+PRE_LATEX_BEAMER_HEADER := release/headers_beamer.pre.tex
 
 # Für HTML Slides:
 REVEALJS=-V revealjs-url=./reveal.js
@@ -72,15 +74,35 @@ release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
+$(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile
+	sed -e 's/$${githash}/$(GIT_HASH)/g' \
+	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
+	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
+	    -e 's/$${title}/$(TITLE)/g' \
+	    -e 's/$${author}/$(AUTHOR)/g' \
+	    -e 's/$${institute}/$(INSTITUTE)/g' \
+	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
+	    $< > $@
+
+$(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile
+	sed -e 's/$${githash}/$(GIT_HASH)/g' \
+	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
+	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
+	    -e 's/$${title}/$(TITLE)/g' \
+	    -e 's/$${author}/$(AUTHOR)/g' \
+	    -e 's/$${institute}/$(INSTITUTE)/g' \
+	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
+	    $< > $@
+
 # ---------- Script ----------
-$(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(SRC_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BIB) Makefile
+$(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BIB) Makefile
 	pandoc $(SRC_SCRIPT_PRE_MD) -t latex -o $(OUT_SCRIPT) \
 		--pdf-engine=latexmk --pdf-engine-opt=-lualatex \
 		--pdf-engine-opt=-interaction=nonstopmode \
 		--number-sections \
 		--filter pandoc-crossref \
 		--citeproc \
-		-H $(SRC_LATEX_HEADER)
+		-H $(PRE_LATEX_HEADER)
 
 $(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Makefile
 	pandoc $(SRC_SCRIPT_PRE_MD) \
@@ -109,7 +131,7 @@ release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $
 	    -V transition=slide \
 	    -V history=false
 
-release/slides%.pdf: release/slides%.pre.md $(SRC_LATEX_BEAMER_HEADER) Makefile
+release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile
 	pandoc $< -t beamer -o $@ \
 	    --slide-level=2 \
 	    --pdf-engine=latexmk --pdf-engine-opt=-lualatex \
@@ -118,11 +140,12 @@ release/slides%.pdf: release/slides%.pre.md $(SRC_LATEX_BEAMER_HEADER) Makefile
 	    --filter pandoc-crossref \
 	    --citeproc \
 	    --toc --toc-depth=1 \
-	    -H $(SRC_LATEX_BEAMER_HEADER) \
+	    -H $(PRE_LATEX_BEAMER_HEADER) \
 	    -V handout \
 	    -V aspectratio=169 \
 	    -V theme:default
 
 clean:
 	rm -f $(OUT_SCRIPT) $(OUT_SCRIPT_HTML_PREVIEW) $(OUT_SLIDES_HTML) $(OUT_SLIDES_PDF) \
-	      $(SRC_SCRIPT_PRE_MD) $(SRC_SLIDES_PRE_MD)
+	      $(SRC_SCRIPT_PRE_MD) $(SRC_SLIDES_PRE_MD) \
+	      $(PRE_LATEX_HEADER) $(PRE_LATEX_BEAMER_HEADER)

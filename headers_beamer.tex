@@ -49,11 +49,12 @@
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.5ex,dp=1.5ex,left]{author in head/foot}
-      \usebeamerfont{author in head/foot}\hspace{1em}Prof. Dr.-Ing. Jan Zwiener
+        \usebeamerfont{author in head/foot}\hspace{1em}${author}
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.5ex,dp=1.5ex,center]{title in head/foot}
-      \usebeamerfont{title in head/foot}Slidedeck\\ % z.B. durch Titel ersetzen
-      Seite \insertframenumber{} / \inserttotalframenumber\hspace{1em}%
+        \usebeamerfont{title in head/foot}${title}\\
+        \#${githash}\\
+        \insertframenumber{} / \inserttotalframenumber\hspace{1em}%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.5ex,dp=1.5ex,right]{date in head/foot}
       \includegraphics[height=7.5ex]{img/hdalogo.png}\hspace{1em}
