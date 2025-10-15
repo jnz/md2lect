@@ -56,7 +56,7 @@ slides: $(OUT_SLIDES_HTML)
 beamer: $(OUT_SLIDES_PDF)
 
 # ---------- Preprocessing: ersetzt ${githash}, ${buildtime}, ${builddate} ----------
-$(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile
+$(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile config.mk
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -66,7 +66,7 @@ $(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile
+release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile config.mk
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -76,7 +76,7 @@ release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-$(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile
+$(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile config.mk
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -86,7 +86,7 @@ $(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-$(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile
+$(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile config.mk
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -97,7 +97,7 @@ $(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile
 	    $< > $@
 
 # ---------- Script ----------
-$(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BIB) Makefile
+$(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BIB) Makefile config.mk
 	pandoc $(SRC_SCRIPT_PRE_MD) -t latex -o $(OUT_SCRIPT) \
 		--pdf-engine=latexmk --pdf-engine-opt=-lualatex \
 		--pdf-engine-opt=-interaction=nonstopmode \
@@ -106,7 +106,7 @@ $(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BI
 		--citeproc \
 		-H $(PRE_LATEX_HEADER)
 
-$(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Makefile
+$(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Makefile config.mk
 	pandoc $(SRC_SCRIPT_PRE_MD) \
 		-t html5 -s -o $(OUT_SCRIPT_HTML_PREVIEW) \
 		$(MATHJS) \
@@ -116,7 +116,7 @@ $(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Make
 		--citeproc
 
 # ---------- Slides ----------
-release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $(SRC_BIB) revealstyle.css Makefile
+release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $(SRC_BIB) revealstyle.css Makefile config.mk
 	pandoc $< \
 	    -t revealjs -s -o $@ \
 	    $(MATHJS) $(REVEALJS) \
@@ -133,7 +133,7 @@ release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $
 	    -V transition=slide \
 	    -V history=false
 
-release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile
+release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile config.mk
 	pandoc $< -t beamer -o $@ \
 	    --slide-level=2 \
 	    --pdf-engine=latexmk --pdf-engine-opt=-lualatex \
