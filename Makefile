@@ -98,7 +98,7 @@ $(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile config.mk
 
 # ---------- Script ----------
 $(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BIB) Makefile config.mk
-	pandoc $(SRC_SCRIPT_PRE_MD) -t latex -o $(OUT_SCRIPT) \
+	pandoc -f markdown+smart $(SRC_SCRIPT_PRE_MD) -t latex -o $(OUT_SCRIPT) \
 		--pdf-engine=latexmk --pdf-engine-opt=-lualatex \
 		--pdf-engine-opt=-interaction=nonstopmode \
 		--number-sections \
@@ -107,7 +107,7 @@ $(OUT_SCRIPT): $(SRC_SCRIPT_PRE_MD) $(PRE_LATEX_HEADER) $(SRC_CROSSREF) $(SRC_BI
 		-H $(PRE_LATEX_HEADER)
 
 $(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Makefile config.mk
-	pandoc $(SRC_SCRIPT_PRE_MD) \
+	pandoc -f markdown+smart $(SRC_SCRIPT_PRE_MD) \
 		-t html5 -s -o $(OUT_SCRIPT_HTML_PREVIEW) \
 		$(MATHJS) \
 		--embed-resources \
@@ -117,7 +117,7 @@ $(OUT_SCRIPT_HTML_PREVIEW): $(SRC_SCRIPT_PRE_MD) $(SRC_CROSSREF) $(SRC_BIB) Make
 
 # ---------- Slides ----------
 release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $(SRC_BIB) revealstyle.css Makefile config.mk
-	pandoc $< \
+	pandoc -f markdown+smart $< \
 	    -t revealjs -s -o $@ \
 	    $(MATHJS) $(REVEALJS) \
 	    --slide-level=2 \
@@ -134,7 +134,7 @@ release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $
 	    -V history=false
 
 release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile config.mk
-	pandoc $< -t beamer -o $@ \
+	pandoc -f markdown+smart $< -t beamer -o $@ \
 	    --slide-level=2 \
 	    --pdf-engine=latexmk --pdf-engine-opt=-lualatex \
 	    --pdf-engine-opt=-interaction=nonstopmode \
