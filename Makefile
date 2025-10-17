@@ -19,11 +19,13 @@ OUT_SCRIPT_HTML_PREVIEW=release/script.html
 # Zieldateien Slides
 SRC_SLIDES_PRE_MD := $(patsubst %.md,release/%.pre.md,$(notdir $(SRC_SLIDES_MD)))
 OUT_SLIDES_HTML := $(patsubst %.md,release/%.html,$(notdir $(SRC_SLIDES_MD)))
+OUT_SLIDES_HTML_PREVIEW := $(patsubst %.md,release/%_preview.html,$(notdir $(SRC_SLIDES_MD)))
 OUT_SLIDES_PDF  := $(patsubst %.md,release/%.pdf,$(notdir $(SRC_SLIDES_MD)))
 
 # Beispiel:
-# slides01.md ──▶ release/slides01.pre.md ──▶  release/slides01.html
-#                                          └─▶ release/slides01.pdf
+# slides01.md ──▶ release/slides01.pre.md ──▶  release/slides01.html (Für die Präsentation)
+#                                         └─▶ release/slides01_preview.html (Gut als Übersicht)
+#                                         └─▶ release/slides01.pdf (Als Folien-Handout)
 
 # Preprocessed Inputs
 SRC_SCRIPT_PRE_MD=release/script.pre.md
@@ -48,12 +50,13 @@ AUTHORMAIL ?= unknown@email
 
 # Standard-Ziel
 all: $(OUT_SCRIPT_HTML_PREVIEW)
-everything: pdf slides beamer
-script: $(OUT_SCRIPT)
+everything: pdf slides beamer slides-html-preview
 pdf: $(OUT_SCRIPT)
+script: $(OUT_SCRIPT) # same
 preview: $(OUT_SCRIPT_HTML_PREVIEW)
 slides: $(OUT_SLIDES_HTML)
 beamer: $(OUT_SLIDES_PDF)
+slides-html-preview: $(OUT_SLIDES_HTML_PREVIEW)
 
 # ---------- Preprocessing: ersetzt ${githash}, ${buildtime}, ${builddate} ----------
 $(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile config.mk
@@ -147,7 +150,18 @@ release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile 
 	    -V aspectratio=169 \
 	    -V theme:default
 
+release/$(SLIDE_PREFIX)%_preview.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $(SRC_BIB) Makefile config.mk
+	pandoc -f markdown+smart $< \
+	    -t html5 -s -o $@ \
+	    $(MATHJS) \
+	    --embed-resources \
+	    --filter pandoc-crossref \
+	    --citeproc \
+	    --toc --toc-depth=2
+
 clean:
 	rm -f $(OUT_SCRIPT) $(OUT_SCRIPT_HTML_PREVIEW) $(OUT_SLIDES_HTML) $(OUT_SLIDES_PDF) \
 	      $(SRC_SCRIPT_PRE_MD) $(SRC_SLIDES_PRE_MD) \
-	      $(PRE_LATEX_HEADER) $(PRE_LATEX_BEAMER_HEADER)
+	      $(PRE_LATEX_HEADER) $(PRE_LATEX_BEAMER_HEADER) \
+	      $(OUT_SLIDES_HTML_PREVIEW)
+
