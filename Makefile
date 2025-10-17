@@ -167,3 +167,19 @@ clean:
 	    echo "No release/ directory found."; \
 	fi
 
+# ---------- Release Packaging (optionaler Prefix) ----------
+.PHONY: release
+release: everything
+	@echo "Renaming output files with prefix '$(OUTPUT_PREFIX)'..."
+ifneq ($(strip $(OUTPUT_PREFIX)),)
+	@for f in $(OUT_SCRIPT) $(OUT_SCRIPT_HTML_PREVIEW) $(OUT_SLIDES_HTML) $(OUT_SLIDES_HTML_PREVIEW) $(OUT_SLIDES_PDF); do \
+		if [ -f "$$f" ]; then \
+			dir=$$(dirname "$$f"); \
+			base=$$(basename "$$f"); \
+			mv -v "$$f" "$$dir/$(OUTPUT_PREFIX)$$base"; \
+		fi; \
+	done
+else
+	@echo "No OUTPUT_PREFIX set — skipping renaming."
+endif
+
