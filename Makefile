@@ -1,4 +1,5 @@
 -include config.mk
+OUTPUT_PREFIX ?=
 
 LOCAL_BIN := $(CURDIR)/bin
 export PATH := $(LOCAL_BIN):$(PATH)
@@ -159,8 +160,10 @@ release/$(SLIDE_PREFIX)%_preview.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CRO
 	    --toc --toc-depth=2
 
 clean:
-	rm -f $(OUT_SCRIPT) $(OUT_SCRIPT_HTML_PREVIEW) $(OUT_SLIDES_HTML) $(OUT_SLIDES_PDF) \
-	      $(SRC_SCRIPT_PRE_MD) $(SRC_SLIDES_PRE_MD) \
-	      $(PRE_LATEX_HEADER) $(PRE_LATEX_BEAMER_HEADER) \
-	      $(OUT_SLIDES_HTML_PREVIEW)
+	@if [ -d release ]; then \
+	    echo "Cleaning release/ ..."; \
+	    rm -vf release/*.pdf release/*.html release/*.pre.md release/*.pre.tex; \
+	else \
+	    echo "No release/ directory found."; \
+	fi
 
