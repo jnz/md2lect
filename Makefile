@@ -52,7 +52,6 @@ AUTHORMAIL ?= unknown@email
 all: $(OUT_SCRIPT_HTML_PREVIEW)
 everything: pdf slides beamer slides-html-preview
 pdf: $(OUT_SCRIPT)
-script: $(OUT_SCRIPT) # same
 preview: $(OUT_SCRIPT_HTML_PREVIEW)
 slides: $(OUT_SLIDES_HTML)
 beamer: $(OUT_SLIDES_PDF)
