@@ -51,7 +51,7 @@ AUTHORMAIL ?= unknown@email
 
 # Standard-Ziel
 all: $(OUT_SCRIPT_HTML_PREVIEW)
-everything: pdf slides beamer slides-html-preview
+everything: pdf slides beamer
 pdf: $(OUT_SCRIPT)
 preview: $(OUT_SCRIPT_HTML_PREVIEW)
 slides: $(OUT_SLIDES_HTML)
