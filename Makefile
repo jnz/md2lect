@@ -136,7 +136,7 @@ release/$(SLIDE_PREFIX)%.html: release/$(SLIDE_PREFIX)%.pre.md $(SRC_CROSSREF) $
 	    -V transition=slide \
 	    -V history=false
 
-release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) Makefile config.mk
+release/slides%.pdf: release/slides%.pre.md $(PRE_LATEX_BEAMER_HEADER) $(SRC_BIB) Makefile config.mk
 	pandoc -f markdown+smart $< -t beamer -o $@ \
 	    --slide-level=2 \
 	    --pdf-engine=latexmk --pdf-engine-opt=-lualatex \
