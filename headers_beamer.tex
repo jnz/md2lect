@@ -2,54 +2,62 @@
 \usepackage{microtype} % für hübschere Typografie (z.B. Ligaturen)
 \usepackage{amsmath} % für erweiterte Mathematik-Umgebungen wie z.B. align
 
-% ==== Fonts & Emoji-Fallback (LuaLaTeX) ====
+% ==== Fonts & Unicode (LuaLaTeX) ====
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \usepackage{luacode}
 
-% TikZ für Diagramme und Grafiken
-%\usepackage{tikz}
-%\usetikzlibrary{arrows.meta,arrows,3d,bending,positioning}
+% TikZ für Diagramme und Grafiken (optional)
+% \usepackage{tikz}
+% \usetikzlibrary{arrows.meta,arrows,3d,bending,positioning}
 
-% Emoji-Fallback (Noto Color Emoji muss installiert sein)
+% ==== Unicode-Fallbacks ====
+% Emoji + allgemeiner Unicode-Fallback
+% "Noto Color Emoji" muss installiert sein
+% "DevaVu Sans" muss installiert sein
+%
 \directlua{
-  luaotfload.add_fallback("emojifallback", {
-    "Noto Color Emoji:mode=harf;script=DFLT;"
+  luaotfload.add_fallback("unifallback", {
+    "Noto Color Emoji:mode=harf;script=DFLT;",
+    "DejaVu Sans:mode=harf;script=latn;"
   })
 }
 
-% Hauptschrift
+% ==== Schriften ====
+% Hauptschrift (DIN, mit Fallback)
 \setmainfont{HDA DIN Office}[
-  BoldFont    = HDA DIN Office Bold,
+  BoldFont   = {HDA DIN Office Bold},
   %ItalicFont = {Libertinus Sans Italic},
-  %ItalicFont = {Times New Roman Italic},
-  RawFeature  = {fallback=emojifallback}
+  RawFeature = {fallback=unifallback}
 ]
+
+% Sans-Font
 \setsansfont{HDA DIN Office}[
-  BoldFont    = HDA DIN Office Bold,
+  BoldFont   = {HDA DIN Office Bold},
   %ItalicFont = {Libertinus Sans Italic},
-  %ItalicFont = {Times New Roman Italic},
-  RawFeature  = {fallback=emojifallback}
+  RawFeature = {fallback=unifallback}
 ]
-% \setmainfont{Libertinus Serif}[RawFeature={fallback=emojifallback}]
-% \setsansfont{Libertinus Sans}[RawFeature={fallback=emojifallback}]
-\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase,RawFeature={fallback=emojifallback}]
 
-\setbeamerfont{frametitle}{size=\large}
-% \setbeamerfont{normal text}{size=\small}
+% Monospace für Code
+\setmonofont{DejaVu Sans Mono}[
+  Scale      = MatchLowercase,
+  RawFeature = {fallback=unifallback}
+]
 
-% Mathematik
+% Mathematische Schrift
 \setmathfont{Libertinus Math}
 
-% Links u. rechts mehr Platz nutzen
+% ==== Beamer-Einstellungen ====
 \setbeamersize{text margin left=1em, text margin right=1em}
+\setbeamerfont{frametitle}{size=\large}
+% \setbeamerfont{normal text}{size=\small}
 
 % Footer mit Name, Vorlesungstitel, Logo
 \setbeamertemplate{footline}{
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.5ex,dp=1.5ex,left]{author in head/foot}
-        \usebeamerfont{author in head/foot}\hspace{1em}${author}
+      \usebeamerfont{author in head/foot}\hspace{1em}${author}
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=0.4\paperwidth,ht=2.5ex,dp=1.5ex,center]{title in head/foot}
         \usebeamerfont{title in head/foot}${title}\\
@@ -64,5 +72,5 @@
 }
 
 % Git-Hash und Build-Date von Pandoc setzen lassen
-\newcommand{\githash}{\githash}     % wird von Pandoc ersetzt
+\newcommand{\githash}{\githash}
 \newcommand{\buildtag}{\buildtag}

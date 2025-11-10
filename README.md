@@ -54,9 +54,9 @@ Dejavu Fonts
 
     https://dejavu-fonts.github.io/
 
-Noto Color Emoji
+Noto Emoji
 
-    https://fonts.google.com/noto/specimen/Noto+Color+Emoji
+    https://fonts.google.com/noto/specimen/Noto+Emoji
 
 ## Kompilieren:
 
