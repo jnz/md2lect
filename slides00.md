@@ -30,7 +30,8 @@ ${author} (<${authormail}>)
 
 ## <!-- Kein Titel für Slide mit Video -->
 
-<video controls width="640" autoplay loop muted>
+<!-- <video controls width="640" autoplay loop muted> -->
+<video controls autoplay loop muted style="width:80%; height:auto;">
   <source src="img/moorevoronoi_etienne_jacob.mp4" type="video/mp4">
 </video>
 
