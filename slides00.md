@@ -126,7 +126,7 @@ Siehe @tbl:git.
 Code
 -------------
 
-C Code:
+C Code (max. 80 Spalten und 16 Zeilen):
 ```C
 #include <stdio.h>
 int main() {
