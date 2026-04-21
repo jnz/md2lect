@@ -15,6 +15,7 @@
 % Emoji + allgemeiner Unicode-Fallback
 % "Noto Color Emoji" muss installiert sein
 % "DevaVu Sans" muss installiert sein
+% "lm-math" muss installiert sein (miktex)
 %
 \directlua{
   luaotfload.add_fallback("unifallback", {
@@ -44,8 +45,9 @@
   RawFeature = {fallback=unifallback}
 ]
 
-% Mathematische Schrift
-\setmathfont{Libertinus Math}
+% Mathematische Schrift (lm-math Paket installieren)
+% \setmathfont{Libertinus Math}
+\setmathfont{Latin Modern Math}
 
 % ==== Beamer-Einstellungen ====
 \setbeamersize{text margin left=1em, text margin right=1em}
