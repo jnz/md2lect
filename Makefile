@@ -79,7 +79,7 @@ release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile config.mk
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-$(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile config.mk
+$(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile config.mk .git/HEAD .git/index
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -89,7 +89,7 @@ $(PRE_LATEX_HEADER): $(SRC_LATEX_HEADER) Makefile config.mk
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-$(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile config.mk
+$(PRE_LATEX_BEAMER_HEADER): $(SRC_LATEX_BEAMER_HEADER) Makefile config.mk .git/HEAD .git/index
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
