@@ -30,8 +30,15 @@ ${author} (<${authormail}>)
 
 ## <!-- Kein Titel für Slide mit Video -->
 
+```{=latex}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.25\textwidth]{img/novideo.png}
+    \caption*{Video not embedded in PDF. \url{https://videourl}. }
+\end{figure}
+```
 <!-- <video controls width="640" autoplay loop muted> -->
-<video controls autoplay loop muted style="width:80%; height:auto;">
+<video controls style="width: 75%; max-width: 700px; height: auto;" autoplay loop muted>
   <source src="img/moorevoronoi_etienne_jacob.mp4" type="video/mp4">
 </video>
 
