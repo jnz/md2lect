@@ -18,12 +18,17 @@ slideNumber: true
 <small>
 ${author} (<${authormail}>)
 
-| Git | Build | Date |
-|---------|-------|-----------|
-| #${githash} | ${builddate} | ${buildtime} |
-
-
+| Git Hash | Date |
+|---------|-----------|
+| #${githash} | ${buildtime} |
 </small>
+
+<video controls style="width: 25%; max-width: 256; height: auto;" autoplay loop muted>
+  <source src="img/moorevoronoi_etienne_jacob.mp4" type="video/mp4">
+</video>
+```{=html}
+<span style="font-size: 0.3em;"><br>Animation: Etienne Jacob</span>
+```
 
 Übersicht
 ======
