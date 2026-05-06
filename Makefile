@@ -59,7 +59,7 @@ beamer: $(OUT_SLIDES_PDF)
 slides-html-preview: $(OUT_SLIDES_HTML_PREVIEW)
 
 # ---------- Preprocessing: ersetzt ${githash}, ${buildtime}, ${builddate} ----------
-$(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile config.mk
+$(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile config.mk .git/HEAD .git/index
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
@@ -69,7 +69,7 @@ $(SRC_SCRIPT_PRE_MD): $(SRC_SCRIPT_MD) Makefile config.mk
 	    -e 's/$${authormail}/$(AUTHORMAIL)/g' \
 	    $< > $@
 
-release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile config.mk
+release/$(SLIDE_PREFIX)%.pre.md: $(SLIDE_PREFIX)%.md Makefile config.mk .git/HEAD .git/index
 	sed -e 's/$${githash}/$(GIT_HASH)/g' \
 	    -e 's/$${buildtime}/$(BUILD_TIME)/g' \
 	    -e 's/$${builddate}/$(BUILD_DATE)/g' \
